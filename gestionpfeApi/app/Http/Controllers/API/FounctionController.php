@@ -2,11 +2,11 @@
 
 namespace App\Http\Controllers\API;
 
+use App\API\Founction;
 use App\Http\Controllers\Controller;
-use App\API\Salarie;
 use Illuminate\Http\Request;
 
-class SalarieController extends Controller
+class FounctionController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -15,7 +15,7 @@ class SalarieController extends Controller
      */
     public function index()
     {
-      return response()->json(Salarie::with(['entreprise','pays','ville','permis','situation_familial','founction','instructions','promotions','suiviPros'])->get(),200)
+      return response()->json(Founction::get(),200)
       ->header('statut', 'infos afficher avec success');
     }
 
@@ -27,44 +27,45 @@ class SalarieController extends Controller
      */
     public function store(Request $request)
     {
-      return response()->json(Salarie::create($request->all()), 201)
+      return response()->json(Founction::create($request->all()), 201)
       ->header('statut', 'infos ajout avec success');
     }
 
     /**
      * Display the specified resource.
      *
-     * @param  \App\API\salarie  $salarie
+     * @param  \App\Founction  $Founction
      * @return \Illuminate\Http\Response
      */
-    public function show(Salarie $salarie)
+    public function show(Founction $fonction)
     {
-      return response()->json($salarie::all()->find($salarie->id),200)
+      return response()->json($fonction::all()->find($fonction->id),200)
       ->header('statut', 'Salarie afficher avec success');
     }
+
 
     /**
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\API\Salarie  $salarie
+     * @param  \App\Fonction  $fonction
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Salarie $salarie)
+    public function update(Request $request, Founction $fonction)
     {
-      return response()->json($salarie->update($request->all()), 201)
+      return response()->json($fonction->update($request->all()), 201)
       ->header('statut', 'Mise a jour effectuer avec success');
     }
 
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\API\salarie  $salarie
+     * @param  \App\Fonction  $fonction
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Salarie $salarie)
+    public function destroy(Founction $fonction)
     {
-      return response()->json($salarie->delete(), 401)
+      return response()->json($fonction->delete(), 401)
       ->header('statut', 'Suppression effectuer avec success');
     }
 }

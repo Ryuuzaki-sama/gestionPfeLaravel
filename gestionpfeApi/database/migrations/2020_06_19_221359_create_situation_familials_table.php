@@ -15,7 +15,7 @@ class CreateSituationFamilialsTable extends Migration
     {
         Schema::create('situation_familials', function (Blueprint $table) {
             $table->id();
-            $table->string('situation',10);
+            $table->string('situation',20);
             $table->unsignedBigInteger('conjoint_id')->nullable();
             $table->timestamps();
         });

@@ -3,6 +3,20 @@
 /** @var \Illuminate\Database\Eloquent\Factory $factory */
 
 use App\API\Salarie;
+use App\API\Entreprise;
+use App\API\AbsenceLegal;
+use App\API\Accident;
+use App\API\EmploiAnterieur;
+use App\API\Founction;
+use App\API\Instruction;
+use App\API\PaysList;
+use App\API\PermisList;
+use App\API\Promotion;
+use App\API\Sanction;
+use App\API\SituationFamilial;
+use App\API\SuiviProfessionel;
+use App\API\Ville;
+
 use Faker\Generator as Faker;
 
 $factory->define(Salarie::class, function (Faker $faker) {
@@ -12,23 +26,25 @@ $factory->define(Salarie::class, function (Faker $faker) {
       'prenom_salarie' => $faker->firstName,
       'gender' => $faker->randomElement(['male', 'female']),
       'nationalite' => $faker->city,
-      'date_naissance' => $faker->dateTimeThisDecade($max='now'),
+      'date_naissance' => $faker->dateTimeThisCentury($max='now'),
       'adresse' => $faker->address,
+      'email' => $faker->email,
       'telephone' => $faker->phoneNumber,
       'date_entree' => $faker->dateTimeThisYear($max='now'),
       'observations' => $faker->text,
       'cin_salarie' => 'D829214',
       'cin_date_created_at' => $faker->dateTimeThisCentury($max='now'),
       'cin_localisation_created_at' => $faker->city,
-      'pays_id' => $faker->numberBetween($min = 1, $max = 4),
-      'ville_id' => $faker->numberBetween($min = 1, $max = 4),
-      'permis_id' => $faker->numberBetween($min = 1, $max = 4),
-      'situation_familial_id' => $faker->numberBetween($min = 1, $max = 4),
-      'fonction_id' => $faker->numberBetween($min = 1, $max = 4),
-      'sevice_id' => $faker->numberBetween($min = 1, $max = 4),
-      'sanction_id' => $faker->numberBetween($min = 1, $max = 4),
-      'accident_id' => $faker->numberBetween($min = 1, $max = 4),
-
-      //'entreprise_id' => Entreprise::inRandomOrder()->first(),
+      'pays_id' => PaysList::inRandomOrder()->first(),
+      'ville_id' => Ville::inRandomOrder()->first(),
+      'permis_id' => PermisList::inRandomOrder()->first(),
+      'situation_familial_id' => SituationFamilial::inRandomOrder()->first(),
+      'founction_id' => Founction::inRandomOrder()->first(),
+      'sanction_id' => Sanction::inRandomOrder()->first(),
+      'accident_id' => Accident::inRandomOrder()->first(),
+      'promotion_id' => Promotion::inRandomOrder()->first(),
+      'absence_legal_id' =>AbsenceLegal::inRandomOrder()->first(),
+      'suivi_professionel_id'=> SuiviProfessionel::inRandomOrder()->first(),
+      'entreprise_id' => Entreprise::inRandomOrder()->first(),
     ];
 });

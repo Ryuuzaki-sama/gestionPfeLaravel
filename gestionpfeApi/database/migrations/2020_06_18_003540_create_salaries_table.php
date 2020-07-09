@@ -36,7 +36,7 @@ class CreateSalariesTable extends Migration
           $table->unsignedBigInteger("permis_id")->nullable();
           $table->unsignedBigInteger("situation_familial_id")->nullable();
 
-          $table->unsignedBigInteger("fonction_id")->nullable();
+          $table->unsignedBigInteger("founction_id")->nullable();
           //$table->unsignedBigInteger("sevice_id")->nullable();
           $table->unsignedBigInteger("sanction_id")->nullable();
           $table->unsignedBigInteger("accident_id")->nullable();
@@ -44,6 +44,8 @@ class CreateSalariesTable extends Migration
           $table->unsignedBigInteger("promotion_id")->nullable();
           $table->unsignedBigInteger("absence_legal_id")->nullable();
           $table->unsignedBigInteger("suivi_professionel_id")->nullable();
+          $table->unsignedBigInteger("entreprise_id")->nullable();
+          $table->unsignedBigInteger("emploi_anterieur_id")->nullable();
 
           $table->timestamps();
         });

@@ -25,7 +25,7 @@ class Salarie extends Model
 
     public function permis()
     {
-        return $this->belongsTo('App\API\PermisList');
+        return $this->hasMany('App\API\PermisList');
     }
 
     public function situation_familial()
@@ -33,9 +33,9 @@ class Salarie extends Model
         return $this->belongsTo('App\API\SituationFamilial');
     }
 
-    public function fonction()
+    public function founction()
     {
-        return $this->belongsTo('App\API\Fonction');
+        return $this->belongsTo('App\API\Founction');
     }
 
     public function instructions()
@@ -47,6 +47,11 @@ class Salarie extends Model
     public function promotions()
     {
       return $this->hasMany('App\API\Promotion');
+
+    }
+    public function suiviPros()
+    {
+      return $this->hasMany('App\API\SuiviPro');
 
     }
 }

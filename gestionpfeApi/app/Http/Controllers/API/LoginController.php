@@ -1,65 +1,27 @@
 <?php
 
 namespace App\Http\Controllers\API;
-
-use App\API\Login;
-use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use App\Http\Controllers\Controller;
+use App\User; 
+use Illuminate\Support\Facades\Auth;
 
 class LoginController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function index()
-    {
-        //
-    }
-
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
-    public function store(Request $request)
-    {
-        //
-    }
-
-    /**
-     * Display the specified resource.
-     *
-     * @param  \App\API\Login  $login
-     * @return \Illuminate\Http\Response
-     */
-    public function show(Login $login)
-    {
-        //
-    }
-
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \App\API\Login  $login
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, Login $login)
-    {
-        //
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  \App\API\Login  $login
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy(Login $login)
-    {
-        //
+    public $successStatus = 200;
+    /** 
+     * login api 
+     * 
+     * @return \Illuminate\Http\Response 
+     */ 
+    public function login(){ 
+        if(Auth::attempt(['email' => request('email'), 'password' => request('password')])){ 
+            $user = Auth::user(); 
+            $success['token'] =  $user->createToken('MyApp')-> accessToken; 
+            return response()->json(['success' => $success], $this-> successStatus); 
+        } 
+        else{ 
+            return response()->json(['error'=>'Unauthenticated'], 401); 
+        } 
     }
 }

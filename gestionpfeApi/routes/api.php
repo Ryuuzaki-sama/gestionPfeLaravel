@@ -14,9 +14,17 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::middleware('auth:api')->get('/user', function (Request $request) {
-     return $request->user();
-});
+Route::post('login', 'API\LoginController@login');
+
+Route::middleware('auth:api')->group( function () {
+    Route::resource('users', 'API\UserController');
+    Route::get('roles', 'API\PermissionController@role_list');
+    Route::post('roles', 'API\PermissionController@role_store');
+    Route::get('permissions', 'API\PermissionController@permission_list');
+    Route::post('permissions', 'API\PermissionController@permission_store');
+    Route::post('rolepermissions/{role}', 'API\PermissionController@role_has_permissions');
+    Route::post('assignuserrole/{role}', 'API\PermissionController@assign_user_to_role');
+   });
 
 Route::apiResource('absence_legal', 'API\AbsenceLegalController');
 Route::apiResource('reasonabsence', 'API\AbsenceReasonController');
