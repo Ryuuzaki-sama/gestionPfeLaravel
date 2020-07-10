@@ -19,7 +19,7 @@ class DatabaseSeeder extends Seeder
         // RegionSeeder::class,
         // SituationFamilialSeeder::class,
         // VilleSeeder::class,
-        // SalarieSeeder::class,
+        SalarieSeeder::class,
         UserSeeder::class,
       ]
       );
